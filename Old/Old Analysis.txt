@@ -1,0 +1,19 @@
+# Find the tics (OLD)#
+thresh = 2000
+peaks, _ = find_peaks(y, height=thresh, distance=100, width=10, prominence=1000)
+plt.plot(y)
+plt.plot(peaks, y[peaks], "x")
+plt.plot(np.full((len(y),1), thresh), "--", color="gray")
+plt.title("Tic identification")
+plt.show()
+
+# Final analysis (OLD)#
+READINGS_PER_MINUTE = 11993
+print("========= FINAL OUTPUT =========")
+print("Total duration: " + str(duration))
+num_tics = len(peaks)
+print("Total number of tics: " + str(num_tics))
+avg_per_min = int((float(num_tics) / float(data_len)) * READINGS_PER_MINUTE)
+avg_per_hour = int((float(num_tics) / float(data_len)) * READINGS_PER_MINUTE * 60)
+print("Average number of tics per minute: " + str(avg_per_min))
+print("Average number of tics per hour: " + str(avg_per_hour))
